@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudX Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="logo" onclick="showPage('products')">
+            CloudX Store
+        </div>
+
+        <nav>
+            <button onclick="showPage('products')">Products</button>
+            <button onclick="showPage('cart')">
+                Cart (<span id="cart-count">0</span>)
+            </button>
+            <button id="my-orders-btn" onclick="showPage('my-orders')" style="display:none;">
+                My Orders
+            </button>
+            <button id="logout-btn" onclick="logout()" style="display:none;">
+                Logout
+            </button>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Login Page -->
+        <section id="login-page" class="page">
+            <div class="auth-container">
+                <h2>Welcome Back</h2>
+                <p>Login to your CloudX Store account</p>
+
+                <form id="login-form">
+                    <input type="email" id="email" placeholder="Email address" required>
+
+                    <input type="password" id="password" placeholder="Password" required>
+
+                    <button type="submit">Login</button>
+                </form>
+
+                <p id="login-message"></p>
+
+                <p>
+                    Don't have an account?
+                    <a href="#" onclick="showPage('register'); return false;">
+                        Create account
+                    </a>
+                </p>
+            </div>
+        </section>
+
+        <!-- Registration Page -->
+        <section id="register-page" class="page" style="display:none;">
+            <div class="auth-container">
+                <h2>Create Account</h2>
+                <p>Register to start shopping</p>
+
+                <form id="register-form">
+                    <input type="text" id="register-name" placeholder="Full name" minlength="2" required>
+
+                    <input type="email" id="register-email" placeholder="Email address" required>
+
+                    <input type="password" id="register-password" placeholder="Password (minimum 8 characters)"
+                        minlength="8" required>
+
+                    <button type="submit">Create Account</button>
+                </form>
+
+                <p id="register-message"></p>
+
+                <p>
+                    Already have an account?
+                    <a href="#" onclick="showPage('login'); return false;">
+                        Login
+                    </a>
+                </p>
+            </div>
+        </section>
+
+        <!-- Products Page -->
+        <section id="products-page" class="page" style="display:none;">
+            <div class="page-heading">
+                <h1>Our Products</h1>
+                <p>Explore our latest collection</p>
+            </div>
+
+            <div id="product-list" class="product-grid">
+                <!-- Products loaded from PostgreSQL through Flask -->
+            </div>
+        </section>
+
+        <!-- Cart Page -->
+        <section id="cart-page" class="page" style="display:none;">
+            <div class="page-heading">
+                <h1>Shopping Cart</h1>
+                <p>Review your selected products</p>
+            </div>
+
+            <div class="cart-container">
+                <div id="cart-items">
+                    <!-- Cart items loaded by JavaScript -->
+                </div>
+
+                <div class="cart-summary">
+                    <h2>Order Summary</h2>
+
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="subtotal">₹0.00</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span id="shipping">₹50.00</span>
+                    </div>
+
+                    <div class="summary-row total-row">
+                        <strong>Total</strong>
+                        <strong id="total">₹0.00</strong>
+                    </div>
+
+                    <button type="button" id="checkout-btn" onclick="showPage('checkout')">
+                        Proceed to Checkout
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Checkout Page -->
+        <section id="checkout-page" class="page" style="display:none;">
+            <div class="page-heading">
+                <h1>Checkout</h1>
+                <p>Enter your delivery information</p>
+            </div>
+
+            <div class="checkout-container">
+                <form id="checkout-form">
+
+                    <label for="customer-name">Full Name</label>
+                    <input type="text" id="customer-name" placeholder="Enter your full name" required>
+
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="Enter your phone number" pattern="[0-9]{10}" required>
+
+                    <label for="address">Delivery Address</label>
+                    <textarea id="address" placeholder="Enter your complete address" rows="4" required></textarea>
+
+                    <label for="payment-method">Payment Method</label>
+                    <select id="payment-method" required>
+                        <option value="COD">Cash on Delivery</option>
+                    </select>
+
+                    <div class="checkout-summary">
+                        <h3>Order Total</h3>
+                        <h2 id="checkout-total">₹0.00</h2>
+                    </div>
+
+                    <button type="submit" id="place-order-btn">
+                        Place Order
+                    </button>
+
+                    <p id="checkout-message"></p>
+
+                </form>
+            </div>
+        </section>
+        <!-- My Orders Page -->
+        <section id="my-orders-page" class="page" style="display:none;">
+            <div class="page-heading">
+                <h1>My Orders</h1>
+                <p>View your order history and track order status.</p>
+            </div>
+
+            <div id="my-orders-list">
+                <!-- Orders loaded from Flask API -->
+            </div>
+        </section>
+
+        <!-- Order Success Page -->
+        <section id="success-page" class="page" style="display:none;">
+            <div class="success-container">
+                <h1>Order Placed Successfully!</h1>
+
+                <p>Thank you for shopping with CloudX Store.</p>
+
+                <p>
+                    Your Order ID:
+                    <strong id="order-id"></strong>
+                </p>
+
+                <button onclick="showPage('products')">
+                    Continue Shopping
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>CloudX Store | Built with Flask and PostgreSQL</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
