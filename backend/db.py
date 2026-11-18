@@ -101,37 +101,37 @@ def init_db():
                         "Headphones",
                         "Wireless headphones",
                         2499,
-                        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
+                        "/images/products/headphones.jpg"
                     ),
                     (
                         "Smart Watch",
                         "Fitness smart watch",
                         3999,
-                        "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"
+                        "/images/products/smart-watch.jpg"
                     ),
                     (
                         "Backpack",
                         "Laptop backpack",
                         1499,
-                        "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600"
+                        "/images/products/backpack.jpg"
                     ),
                     (
                         "Wireless Mouse",
                         "Ergonomic mouse",
                         899,
-                        "https://images.unsplash.com/photo-1527814050087-3793815479db?w=600"
+                        "/images/products/mouse.jpg"
                     ),
                     (
                         "Keyboard",
                         "Mechanical keyboard",
                         2999,
-                        "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600"
+                        "/images/products/keyboard.jpg"
                     ),
                     (
                         "Running Shoes",
                         "Comfortable running shoes",
                         2199,
-                        "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"
+                        "/images/products/shoes.jpg"
                     )
                 ]
 
